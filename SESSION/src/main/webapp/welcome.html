@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <p id="message">Loading...</p>
+    <form action="logout" method="post">
+        <input type="submit" value="Logout">
+    </form>
+    <script>
+        document.getElementById('message').innerText = 'Welcome ' + (new URLSearchParams(window.location.search).get('username') || '') + '!';
+    </script>
+</body>
+</html>
