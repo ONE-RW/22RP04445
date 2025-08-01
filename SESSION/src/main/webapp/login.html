@@ -2,18 +2,214 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Dashboard - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background: #5a6fd8;
+        }
+        
+        .demo-accounts {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e1e5e9;
+        }
+        
+        .demo-accounts h3 {
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .account-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .demo-account {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+        
+        .demo-account:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+        
+        .demo-account .role {
+            font-weight: bold;
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        .demo-account .username {
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 2px;
+        }
+        
+        .note {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .note p {
+            color: #333;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+    </style>
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="login" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <input type="submit" value="Login">
-    </form>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>University Dashboard</h1>
+            <p>Role-Based Content Management System</p>
+        </div>
+        
+        <form action="login" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        
+        <div class="demo-accounts">
+            <h3>Demo Accounts</h3>
+            <div class="account-grid">
+                <div class="demo-account" onclick="fillLogin('admin', 'admin123')">
+                    <div class="role">System Admin</div>
+                    <div class="username">admin</div>
+                </div>
+                <div class="demo-account" onclick="fillLogin('sports_editor', 'sports123')">
+                    <div class="role">Sports Editor</div>
+                    <div class="username">sports_editor</div>
+                </div>
+                <div class="demo-account" onclick="fillLogin('academic_editor', 'academic123')">
+                    <div class="role">Academic Editor</div>
+                    <div class="username">academic_editor</div>
+                </div>
+                <div class="demo-account" onclick="fillLogin('campus_editor', 'campus123')">
+                    <div class="role">Campus Life Editor</div>
+                    <div class="username">campus_editor</div>
+                </div>
+                <div class="demo-account" onclick="fillLogin('events_coord', 'events123')">
+                    <div class="role">Events Coordinator</div>
+                    <div class="username">events_coord</div>
+                </div>
+                <div class="demo-account" onclick="fillLogin('tech_editor', 'tech123')">
+                    <div class="role">Tech Editor</div>
+                    <div class="username">tech_editor</div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <p><strong>Note:</strong> Click on any demo account above to auto-fill the login form. Each role provides access to different dashboard features based on their responsibilities.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function fillLogin(username, password) {
+            document.getElementById('username').value = username;
+            document.getElementById('password').value = password;
+        }
+    </script>
 </body>
 </html>
