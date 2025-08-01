@@ -11,19 +11,21 @@ import java.io.IOException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    private static final String USERNAME = "admin";
-    private static final String PASSWORD = "admin";
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        if (USERNAME.equals(username) && PASSWORD.equals(password)) {
+        User user = UserService.authenticateUser(username, password);
+        
+        if (user != null) {
             HttpSession session = request.getSession(true); 
+            session.setAttribute("user", user);
             session.setAttribute("username", username);
-            response.sendRedirect("welcome");
+            session.setAttribute("userId", user.getUserId());
+            session.setAttribute("role", user.getRole());
+            response.sendRedirect("dashboard");
         } else {
             response.sendRedirect("error.html");
         }
